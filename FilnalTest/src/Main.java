@@ -20,6 +20,26 @@ public class Main {
                     phoneBookManager.displayList();
                     break;
                 case 2:
+                    scanner.nextLine();
+                    System.out.println("Nhập số điện thoại: ");
+                    String newNumberPhone = scanner.nextLine();
+                    System.out.println("Nhập nhóm:  ");
+                    String newGroup = scanner.nextLine();
+                    System.out.println("Nhập họ tên: ");
+                    String newName = scanner.nextLine();
+                    System.out.println("Nhập giới tính: ");
+                    String newGender = scanner.nextLine();
+                    System.out.println("Nhập địa chỉ: ");
+                    String newAddress = scanner.nextLine();
+                    System.out.println("Nhập ngày sinh: ");
+                    String newDateOfBirth = scanner.nextLine();
+                    System.out.println("Nhập email: ");
+                    String newEmail = scanner.nextLine();
+
+                    PhoneBook phoneBook = new PhoneBook(newNumberPhone,newGroup,newName,newGender,newAddress,newDateOfBirth,newEmail);
+                    phoneBookList.add(phoneBook);
+                    phoneBookManager.writeFile(phoneBookList);
+                    break;
                 case 3:
                 case 4:
                 case 5:
