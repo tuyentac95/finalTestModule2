@@ -46,7 +46,14 @@ public class Main {
                     String updatePhone = scanner.nextLine();
                     boolean checkPhone = false;
                     int index = -1;
-                    while (!checkPhone && updatePhone != "\n") {
+                    for (PhoneBook phoneBook1 : phoneBookList) {
+                        if (updatePhone.equals(phoneBook1.getPhoneNumber())) {
+                            checkPhone = true;
+                            index = phoneBookList.indexOf(phoneBook1);
+                            break;
+                        }
+                    }
+                    while (!checkPhone) {
                         System.out.println("Không tìm được danh bạ của số điện thoại trên.");
                         System.out.println("Nhập lại số điện thoại");
                         updatePhone = scanner.nextLine();
@@ -58,32 +65,28 @@ public class Main {
                             }
                         }
                     }
-                    if (updatePhone == "\n") {
-                        choice = -1;
-                    } else {
-                        System.out.println("Nhập nhóm:  ");
-                        String updateGroup = scanner.nextLine();
-                        System.out.println("Nhập họ tên: ");
-                        String updateName = scanner.nextLine();
-                        System.out.println("Nhập giới tính: ");
-                        String updateGender = scanner.nextLine();
-                        System.out.println("Nhập địa chỉ: ");
-                        String updateAddress = scanner.nextLine();
-                        System.out.println("Nhập ngày sinh: ");
-                        String updateDateOfBirth = scanner.nextLine();
-                        System.out.println("Nhập email: ");
-                        String updateEmail = scanner.nextLine();
+                    System.out.println("Nhập nhóm:  ");
+                    String updateGroup = scanner.nextLine();
+                    System.out.println("Nhập họ tên: ");
+                    String updateName = scanner.nextLine();
+                    System.out.println("Nhập giới tính: ");
+                    String updateGender = scanner.nextLine();
+                    System.out.println("Nhập địa chỉ: ");
+                    String updateAddress = scanner.nextLine();
+                    System.out.println("Nhập ngày sinh: ");
+                    String updateDateOfBirth = scanner.nextLine();
+                    System.out.println("Nhập email: ");
+                    String updateEmail = scanner.nextLine();
 
-                        PhoneBook updatePhoneBook = phoneBookList.get(index);
-                        updatePhoneBook.setGroup(updateGroup);
-                        updatePhoneBook.setName(updateName);
-                        updatePhoneBook.setGender(updateGender);
-                        updatePhoneBook.setAddress(updateGender);
-                        updatePhoneBook.setDateOfBirth(updateDateOfBirth);
-                        updatePhoneBook.setEmail(updateEmail);
-                        phoneBookList.set(index,updatePhoneBook);
-                        phoneBookManager.writeFile(phoneBookList);
-                    }
+                    PhoneBook updatePhoneBook = phoneBookList.get(index);
+                    updatePhoneBook.setGroup(updateGroup);
+                    updatePhoneBook.setName(updateName);
+                    updatePhoneBook.setGender(updateGender);
+                    updatePhoneBook.setAddress(updateGender);
+                    updatePhoneBook.setDateOfBirth(updateDateOfBirth);
+                    updatePhoneBook.setEmail(updateEmail);
+                    phoneBookList.set(index,updatePhoneBook);
+                    phoneBookManager.writeFile(phoneBookList);
                     break;
                 case 4:
                     scanner.nextLine();
@@ -92,7 +95,14 @@ public class Main {
 
                     boolean checkPhonenum = false;
                     int newindex = -1;
-                    while (!checkPhonenum && removeNumber != "\n") {
+                    for (PhoneBook phoneBook1 : phoneBookList) {
+                        if (removeNumber.equals(phoneBook1.getPhoneNumber())) {
+                            checkPhonenum = true;
+                            newindex = phoneBookList.indexOf(phoneBook1);
+                            break;
+                        }
+                    }
+                    while (!checkPhonenum) {
                         System.out.println("Không tìm được danh bạ của số điện thoại trên.");
                         System.out.println("Nhập lại số điện thoại");
                         removeNumber = scanner.nextLine();
@@ -104,18 +114,15 @@ public class Main {
                             }
                         }
                     }
-                    if (removeNumber == "\n") {
-                        choice = -1;
-                    } else {
-                        phoneBookList.remove(newindex);
-                        phoneBookManager.writeFile(phoneBookList);
-                    }
+                    phoneBookList.remove(newindex);
+                    phoneBookManager.writeFile(phoneBookList);
+
                     break;
                 case 5:
                     break;
                 case 6:
                     scanner.nextLine();
-                    System.out.println("Thao tác này xóa bộ nhớ đang có! Đồng ý? (Y/N");
+                    System.out.println("Thao tác này xóa bộ nhớ đang có! Đồng ý? (Y/N)");
                     String confirm = scanner.nextLine();
                     if (confirm.equals("Y")) {
                         phoneBookList = phoneBookManager.readFile();
@@ -123,7 +130,7 @@ public class Main {
                     break;
                 case 7:
                     scanner.nextLine();
-                    System.out.println("Thao tác này xóa file đang có! Đồng ý? (Y/N");
+                    System.out.println("Thao tác này xóa file đang có! Đồng ý? (Y/N)");
                     String newConfirm = scanner.nextLine();
                     if (newConfirm.equals("Y")) {
                         phoneBookManager.writeFile(phoneBookList);
